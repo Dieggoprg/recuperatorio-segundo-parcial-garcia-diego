@@ -11,3 +11,13 @@ export const sequelize = new Sequelize(
     }
 )
 
+export const initDB = async () => {
+    try {
+        await sequelize.authenticate();
+        console.log("Autenticación con éxito");
+        await sequelize.sync();
+        console.log("Sincronización con éxito")
+    } catch (error) {
+        console.log("OCURRIÓ UN ERROR CON LA CONEXIÓN A LA BASE DE DATOS")
+    }
+}
