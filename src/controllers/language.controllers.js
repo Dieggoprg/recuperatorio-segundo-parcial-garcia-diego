@@ -41,3 +41,23 @@ export const updateLanguage = async (req , res) => {
         return res.status(500).json("Ocurrió un error al actualizar el Lenguaje");
     }
 };
+
+export const deleteLanguage = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const eliminado = await Language.destroy({ where: { id } });
+
+        if (eliminado > 0) {
+            return res.status(200).json("Lenguaje eliminado con éxito");
+        } else {
+            return res.status(404).json("No se encontró el Lenguaje para eliminar");
+        }
+    } catch (error) {
+        return res.status(500).json("Error al intentar eliminar el Lenguaje");
+    }
+};
+
+
+
+
