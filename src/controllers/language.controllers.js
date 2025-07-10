@@ -58,6 +58,28 @@ export const deleteLanguage = async (req, res) => {
     }
 };
 
+export const getLanguageById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const language = await Language.findByPk(id);
+
+        if (!language) {return res.status(404).json("No se encontró el Lenguaje con ese ID")}
+        return res.status(200).json(language);
+    } catch (error) {
+        return res.status(500).json("Error al buscar el Lenguaje");
+    }
+};
+
+export const getAllLanguage = async (req , res) => {
+    try {
+        const language = await Language.findAll();
+        return res.status(200).json(language)
+    } catch (error) {
+        return res.status(500).json("Error al mostrar todos los Lenguajes");
+    }
+}
+
 
 
 
